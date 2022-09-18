@@ -1,0 +1,6 @@
+.nav{
+    @apply w-10/12 mx-auto space-x-2 py-5
+}
+.nav .link{
+    @apply px-2 py-2 border border-blue-400 rounded hover:bg-blue-400 hover:text-white transition-all duration-300
+}

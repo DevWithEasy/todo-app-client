@@ -1,0 +1,42 @@
+.todos{
+    @apply space-y-5 m-2
+}
+.todos .todo{
+    @apply border rounded
+}
+.todos .todo .title{
+    @apply font-semibold
+}
+.todos .todo .details{
+    @apply text-gray-500
+}
+.todos .todo .status{
+    @apply font-bold
+}
+.todos .todo .delete{
+    @apply bg-red-500 text-white rounded px-3 py-1 m-2
+}
+.todos .todo .update{
+    @apply bg-green-500 text-white rounded px-3 py-1 m-2
+}
+.todos .deletemsg{
+    @apply absolute flex justify-center items-center w-full h-screen bg-gray-700 bg-opacity-50 -top-5
+}
+.todos .deletemsg .msg{
+    @apply bg-white w-8/12 rounded
+}
+.todos .deletemsg .msg h1{
+    @apply border-b text-xl p-2
+}
+.todos .deletemsg .msg .msg_details{
+    @apply p-2 text-gray-500 border-b
+}
+.todos .deletemsg .msg .msg_button{
+    @apply space-x-2 p-2
+}
+.todos .deletemsg .msg .msg_button .cancel{
+    @apply rounded bg-green-500 text-white px-2 py-1
+}
+.todos .deletemsg .msg .msg_button .delete{
+    @apply rounded bg-red-500 text-white px-2 py-1
+}

@@ -1,0 +1,12 @@
+@import "tailwindcss/base";
+@import "./styles/registration.css";
+@import "./styles/login.css";
+@import "./styles/todo.css";
+@import "./styles/todos.css";
+@import "./styles/todoupdate.css";
+@import "./styles/nav.css";
+
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
