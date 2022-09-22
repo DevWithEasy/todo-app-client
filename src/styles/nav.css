@@ -1,6 +1,21 @@
-.nav{
-    @apply w-10/12 mx-auto space-x-2 py-5
+.navbar{
+    @apply flex p-4 justify-between
 }
-.nav .link{
-    @apply px-2 py-2 border border-blue-400 rounded hover:bg-blue-400 hover:text-white transition-all duration-300
+.navbar .navbar_logo span{
+    @apply w-3/12 text-2xl font-bold flex items-center
+}
+.navbar .navbar_logo span .icon{
+    @apply text-red-500
+}
+.navbar .navbar_logo span span{
+    @apply font-bold
+}
+.navbar .navbar_link{
+    @apply w-9/12 space-x-2 flex justify-end
+}
+.navbar .navbar_link .link{
+    @apply px-2 py-1 border border-blue-400 rounded bg-blue-400 hover:bg-blue-500 text-white transition-all duration-300
+}
+.navbar .navbar_link .link_registration{
+    @apply px-2 py-1 border border-red-400 rounded bg-red-400 hover:bg-red-500 text-white transition-all duration-300
 }

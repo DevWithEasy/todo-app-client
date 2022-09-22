@@ -1,14 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { logoutAction } from '../redux/actions/authAction';
+import {BsMastodon} from 'react-icons/bs'
 
 const Nav = () => {
+    const user = useSelector(state=>state.auth.user)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const url =(url)=>{
+        navigate(url)
+    }
+    console.log(user)
     return (
-        <div className='nav'>
-            <Link to='/' className='link'>Home</Link>
-            <Link to='/login' className='link'>Login</Link>
-            <Link to='/registration' className='link'>Registration</Link>
-            <Link to='/todo' className='link'>Todo Add</Link>
-            <Link to='/todos' className='link'>All Todo</Link>
+        <div className='navbar'>
+            <div className="navbar_logo">
+                <span>
+                    <BsMastodon className='icon' size={40}/>
+                    <span><Link to='/'>TODO</Link></span>
+                </span>
+            </div>
+            <div className="navbar_link">
+                {!user.name && <button onClick={()=>url('/login')} className='link'>Login</button>}
+                {!user.name && <button onClick={()=>url('/registration')} className='link_registration'>Start for free
+                </button>}
+                {user.name && <button onClick={()=>url(`/profile/${user.id}`)} className='link'>Profile</button>}
+                {user.name && <button onClick={()=>url('/todo')} className='link'>Add Todo</button>}
+                {user.name &&  <button onClick={()=>url('/todos')} className='link'>All Todos</button>}
+                {user.name && <button onClick={()=>dispatch(logoutAction())} className='link_registration'>Logout</button>}
+            </div>
         </div>
     );
 };

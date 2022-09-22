@@ -1,7 +1,9 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 import Home from './Home';
 import Login from './Login';
+import Profile from './Profile';
+import ProtectedRoute from './ProtectedRoute';
 import Registration from './Registration';
 import Todo from './Todo';
 import Todos from './Todos';
@@ -13,9 +15,12 @@ const Router = () => {
             <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/registration' element={<Registration/>}/>
-            <Route path='/todo' element={<Todo/>}/>
-            <Route path='/todos' element={<Todos/>}/>
-            <Route path='/todo/:id' element={<TodoUpdate/>}/>
+            <Route path='/*' element={<ProtectedRoute/>}>
+                <Route path='profile/:id' element={<Profile/>}/>
+                <Route path='todo' element={<Todo/>}/>
+                <Route path='todos' element={<Todos/>}/>
+                <Route path='todo/:id' element={<TodoUpdate/>}/>
+            </Route>
         </Routes>
     );
 };

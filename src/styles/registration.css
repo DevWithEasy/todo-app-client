@@ -1,9 +1,18 @@
 .registration{
-    @apply m-2 p-2
+    @apply flex justify-center items-center mt-10
 }
-.registration .input{
-    @apply py-2 px-1 border block w-full my-1 rounded
+.registration form{
+    @apply border w-11/12 mx-auto px-2 py-3 rounded-lg shadow
 }
-.registration input[type="submit"]{
-    @apply bg-blue-400 block w-full rounded py-2
+.registration form h2{
+    @apply font-bold text-2xl text-center
+}
+.registration form div{
+    @apply w-28 mx-auto mb-5 h-1 bg-red-500 rounded-br-full rounded-bl-full
+}
+.registration form .input{
+    @apply py-2 px-1 border block w-full my-2 rounded
+}
+.registration form input[type="submit"]{
+    @apply bg-blue-400 block w-full rounded py-2 mt-2
 }

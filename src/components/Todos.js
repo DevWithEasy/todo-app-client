@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import NotUser from './NotUser';
 
 const Todos = () => {
     const user = useSelector(state=>state.auth.user)
@@ -18,7 +19,7 @@ const Todos = () => {
     useEffect(() =>{
         fetchData(`http://localhost:8080/todo/all/${user.id}`,setData)
         // fetchData('http://localhost:8080/todo/6323003f5f8b4489435f7c15',setSingleData)
-    },[deleteId,setDeleteId])
+    },[user,deleteId,setDeleteId])
     const deleteTodo =async(id)=>{
         fetch(`http://localhost:8080/todo/${id}`,{
             method:'DELETE'
@@ -37,35 +38,39 @@ const Todos = () => {
         setDeleteId(id)
     }
     return (
-        <div className='todos'>
-             {
-                todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''
+        <>
+            {!user?.name ? <NotUser/>:
+                <div className='todos'>
+                {
+                   todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''
+               }
+               {
+                   data.map(d=><div key={d._id} className='todo'>
+                       <p className='title'>{d.title}</p>
+                       <p className='details'>{d.details}</p>
+                       <p className='status'>{d.status}</p>
+                       <button onClick={()=>setDelete(d._id)} className='delete'>Delete</button>
+                       <button onClick={()=>update(d._id)} className='update'>Update</button>
+                   </div>)
+               }
+               {
+                   msg && <div className="deletemsg">
+                   <div className="msg">
+                       <h1>Delete Task</h1>
+                       <p className='msg_details'>
+                           Are sure want to delete?<br />
+                           its will permanently delete the task and can't restore its.
+                       </p>
+                       <p className='msg_button'>
+                           <button onClick={()=>setMsg(!msg)} className='cancel'>Cancel</button>
+                           <button onClick={()=>deleteTodo(deleteId)} className='delete'>Delete</button>
+                       </p>
+                   </div>
+               </div>
+               }
+           </div>
             }
-            {
-                data.map(d=><div key={d._id} className='todo'>
-                    <p className='title'>{d.title}</p>
-                    <p className='details'>{d.details}</p>
-                    <p className='status'>{d.status}</p>
-                    <button onClick={()=>setDelete(d._id)} className='delete'>Delete</button>
-                    <button onClick={()=>update(d._id)} className='update'>Update</button>
-                </div>)
-            }
-            {
-                msg && <div className="deletemsg">
-                <div className="msg">
-                    <h1>Delete Task</h1>
-                    <p className='msg_details'>
-                        Are sure want to delete?<br />
-                        its will permanently delete the task and can't restore its.
-                    </p>
-                    <p className='msg_button'>
-                        <button onClick={()=>setMsg(!msg)} className='cancel'>Cancel</button>
-                        <button onClick={()=>deleteTodo(deleteId)} className='delete'>Delete</button>
-                    </p>
-                </div>
-            </div>
-            }
-        </div>
+        </>
     );
 };
 

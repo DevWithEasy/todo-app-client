@@ -1,8 +1,8 @@
 .todos{
-    @apply space-y-5 m-2
+    @apply m-2 grid grid-cols-2 gap-1
 }
 .todos .todo{
-    @apply border rounded
+    @apply border rounded p-2 shadow space-y-2
 }
 .todos .todo .title{
     @apply font-semibold
@@ -14,13 +14,13 @@
     @apply font-bold
 }
 .todos .todo .delete{
-    @apply bg-red-500 text-white rounded px-3 py-1 m-2
+    @apply bg-red-500 text-white rounded px-3 py-1 
 }
 .todos .todo .update{
-    @apply bg-green-500 text-white rounded px-3 py-1 m-2
+    @apply bg-green-500 text-white rounded px-3 py-1 ml-2
 }
 .todos .deletemsg{
-    @apply absolute flex justify-center items-center w-full h-screen bg-gray-700 bg-opacity-50 -top-5
+    @apply absolute flex justify-center items-center w-full h-screen bg-gray-700 bg-opacity-50 -top-5 left-0
 }
 .todos .deletemsg .msg{
     @apply bg-white w-8/12 rounded
