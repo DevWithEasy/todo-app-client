@@ -18,7 +18,7 @@ const Todo = () => {
 
     const todo = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:8080/todo',{
+        await fetch('https://todo-bangla.herokuapp.com/todo',{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'

@@ -21,7 +21,7 @@ const TodoUpdate = () => {
 
     const todo = async (e) => {
         e.preventDefault();
-        await fetch(`http://localhost:8080/todo/${id}`,{
+        await fetch(`https://todo-bangla.herokuapp.com/todo/${id}`,{
             method: 'PUT',
             headers:{
                 'Content-Type': 'application/json'

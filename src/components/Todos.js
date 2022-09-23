@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import NotUser from './NotUser';
+import Loading from './Loading';
 
 const Todos = () => {
     const user = useSelector(state=>state.auth.user)
@@ -17,11 +17,11 @@ const Todos = () => {
         setFunction(data.data)
     }
     useEffect(() =>{
-        fetchData(`http://localhost:8080/todo/all/${user.id}`,setData)
+        fetchData(`https://todo-bangla.herokuapp.com/todo/all/${user.id}`,setData)
         // fetchData('http://localhost:8080/todo/6323003f5f8b4489435f7c15',setSingleData)
     })
     const deleteTodo =async(id)=>{
-        fetch(`http://localhost:8080/todo/${id}`,{
+        fetch(`https://todo-bangla.herokuapp.com/todo/${id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())
@@ -39,7 +39,7 @@ const Todos = () => {
     }
     return (
         <>
-            {!user?.name ? <NotUser/>:
+            {!user?.name ? <Loading/>:
                 <div className='todos'>
                 {
                    todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''

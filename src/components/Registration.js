@@ -27,7 +27,7 @@ const Registration = () => {
         formData.append('email', data.email)
         formData.append('password', data.password)
         formData.append('avator', data.avator)
-        axios.post('http://localhost:8080/user/registration',formData)
+        axios.post('https://todo-bangla.herokuapp.com/user/registration',formData)
         .then(res=>{
             if(res.status ==='success'){
                 navigate('/login')

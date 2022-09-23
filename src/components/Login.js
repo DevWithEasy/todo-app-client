@@ -18,7 +18,7 @@ const Login = () => {
 
     const login = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:8080/user/login',{
+        await fetch('https://todo-bangla.herokuapp.com/user/login',{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
