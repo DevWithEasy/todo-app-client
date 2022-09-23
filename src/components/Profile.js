@@ -43,7 +43,7 @@ const Profile = () => {
     return (
         <>
         { !user?.name ? <Loading/>:
-        <div className='my-10 w-4/12 mx-auto shadow-md p-4 space-y-2 rounded'>
+        <div className='my-10 mx-4 md:w-4/12 md:mx-auto shadow-md border p-4 space-y-2 rounded'>
             {errMsg && <p>{errMsg}</p>}
             <img src={`https://todo-bangla.herokuapp.com/upload/${user?.profileImage}`} alt="" className='w-32 h-32 mx-auto rounded-full'/>
             <p className='p-2 bg-gray-50 rounded'>Name: {user?.name}</p>

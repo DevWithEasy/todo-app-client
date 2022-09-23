@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
+import NotTodoAvailable from './NotTodoAvailable';
 
 const Todos = () => {
     const user = useSelector(state=>state.auth.user)
@@ -25,7 +26,10 @@ const Todos = () => {
             method:'DELETE'
         })
         .then(res=>res.json())
-        .then(data=>setTodoDeleteMsg(data))
+        .then(data=>{
+            setTodoDeleteMsg(data)
+            setTimeout(()=>setTodoDeleteMsg({}),5000)
+        })
         .catch(err=>console.log(err));
         setMsg(!msg)
         setDeleteId('')
@@ -42,7 +46,10 @@ const Todos = () => {
             {!user?.name ? <Loading/>:
                 <div className='todos'>
                 {
-                   todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''
+                   todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 mx-4 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''
+               }
+               {
+                data.length === 0 && <NotTodoAvailable/>
                }
                {
                    data.map(d=><div key={d._id} className='todo'>
@@ -52,6 +59,7 @@ const Todos = () => {
                        <button onClick={()=>setDelete(d._id)} className='delete'>Delete</button>
                        <button onClick={()=>update(d._id)} className='update'>Update</button>
                    </div>)
+                
                }
                {
                    msg && <div className="deletemsg">

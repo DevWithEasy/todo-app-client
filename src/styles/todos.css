@@ -1,5 +1,5 @@
 .todos{
-    @apply m-2 grid grid-cols-2 gap-1
+    @apply m-2 md:grid md:grid-cols-2 gap-1
 }
 .todos .todo{
     @apply border rounded p-2 shadow space-y-2

@@ -11,7 +11,7 @@ const TodoUpdate = () => {
         setFunction(data.data)
     }
     useEffect(() =>{
-        fetchData(`http://localhost:8080/todo/${id}`,setData)
+        fetchData(`https://todo-bangla.herokuapp.com/todo/${id}`,setData)
     },[id])
     const handleInput = (e) => {
         const input = { ...data };

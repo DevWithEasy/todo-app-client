@@ -30,6 +30,7 @@ const Login = () => {
             if(data.user){
                 navigate('/')
                 dispatch(loginAction(data.user))
+                localStorage.setItem('user', JSON.stringify(data.user))
             }
         })
         .catch(err=>console.log(err))

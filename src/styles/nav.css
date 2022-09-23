@@ -14,7 +14,7 @@
     @apply w-9/12 space-x-2 flex justify-end
 }
 .navbar .navbar_link .link{
-    @apply px-2 py-1 border border-blue-400 rounded bg-blue-400 hover:bg-blue-500 text-white transition-all duration-300
+    @apply px-2 py-1 border border-blue-400 rounded bg-blue-400 hover:bg-blue-500 text-white transition-all duration-300 flex justify-center items-center
 }
 .navbar .navbar_link .link_registration{
     @apply px-2 py-1 border border-red-400 rounded bg-red-400 hover:bg-red-500 text-white transition-all duration-300

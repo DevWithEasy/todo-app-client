@@ -11,7 +11,11 @@ const Nav = () => {
     const url =(url)=>{
         navigate(url)
     }
-    console.log(user)
+    const logOut =()=>{
+        dispatch(logoutAction())
+        localStorage.removeItem('user')
+        navigate('/')
+    }
     return (
         <div className='navbar'>
             <div className="navbar_logo">
@@ -27,7 +31,7 @@ const Nav = () => {
                 {user.name && <button onClick={()=>url(`/profile/${user.id}`)} className='link'>Profile</button>}
                 {user.name && <button onClick={()=>url('/todo')} className='link'>Add Todo</button>}
                 {user.name &&  <button onClick={()=>url('/todos')} className='link'>All Todos</button>}
-                {user.name && <button onClick={()=>dispatch(logoutAction())} className='link_registration'>Logout</button>}
+                {user.name && <button onClick={()=>logOut()} className='link_registration'>Logout</button>}
             </div>
         </div>
     );
