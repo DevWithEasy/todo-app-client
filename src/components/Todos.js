@@ -19,7 +19,7 @@ const Todos = () => {
     useEffect(() =>{
         fetchData(`http://localhost:8080/todo/all/${user.id}`,setData)
         // fetchData('http://localhost:8080/todo/6323003f5f8b4489435f7c15',setSingleData)
-    },[user,deleteId,setDeleteId])
+    })
     const deleteTodo =async(id)=>{
         fetch(`http://localhost:8080/todo/${id}`,{
             method:'DELETE'

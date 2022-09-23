@@ -40,13 +40,14 @@ const Profile = () => {
         .catch(err=>console.log(err));
     }
     return (
-        <div className='text-center my-10 w-4/12 mx-auto shadow-md p-4 space-y-2 rounded'>
+        <div className='my-10 w-4/12 mx-auto shadow-md p-4 space-y-2 rounded'>
             {errMsg && <p>{errMsg}</p>}
             <img src={`http://localhost:8080/upload/${user?.profileImage}`} alt="" className='w-32 h-32 mx-auto rounded-full'/>
-            <p>Name: {user?.name}</p>
-            <p>Email: {user?.email}</p>
-            <p>Total Todos: {user?.todos?.length}</p>
-            <button onClick={()=>deleteAccount()}>Delete Account</button>
+            <p className='p-2 bg-gray-50 rounded'>Name: {user?.name}</p>
+            <p className='p-2 bg-gray-50 rounded'>Email: {user?.email}</p>
+            <p className='p-2 bg-gray-50 rounded'>Total Todos: {user?.todos?.length}</p>
+            <button className='p-2 bg-red-400 text-white hover:bg-red-500 rounded' onClick={()=>deleteAccount()}>Delete Account</button>
+            
         </div>
     );
 };
