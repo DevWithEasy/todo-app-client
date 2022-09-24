@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
     const stateUser = useSelector(state=>state.auth.user)
     const user = JSON.parse(localStorage.getItem('user'));
 
-    if(user && !stateUser) {
+    if(user && !stateUser.name) {
         dispatch(loginAction(user))
     }
     

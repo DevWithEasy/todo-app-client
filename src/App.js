@@ -6,10 +6,9 @@ import { loginAction } from "./redux/actions/authAction";
 
 function App() {
   const dispatch = useDispatch()
-  const stateUser = useSelector(state=>state.auth.user)
   const user = JSON.parse(localStorage.getItem('user'));
-
-  if(user && !stateUser) {
+  const stateUser = useSelector(state=>state.auth.user)
+  if(user && !stateUser.name) {
     dispatch(loginAction(user))
   }
   

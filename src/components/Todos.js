@@ -17,6 +17,7 @@ const Todos = () => {
         const res = await fetch(url)
         const data = await res.json()
         setFunction(data.data)
+        setLoading(false)
     }
     useEffect(() =>{
         fetchData(`https://todo-bangla.herokuapp.com/todo/all/${user.id}`,setData)
@@ -29,7 +30,6 @@ const Todos = () => {
         .then(res=>res.json())
         .then(data=>{
             setTodoDeleteMsg(data)
-            setLoading(false)
             setTimeout(()=>setTodoDeleteMsg({}),5000)
         })
         .catch(err=>console.log(err));
