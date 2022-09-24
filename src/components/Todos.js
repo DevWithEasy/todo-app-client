@@ -10,6 +10,7 @@ const Todos = () => {
     const [data,setData] = useState([])
     // const [singleData,setSingleData] = useState({})
     const [msg,setMsg] = useState(false)
+    const [loading,setLoading] = useState(true)
     const [deleteId,setDeleteId] = useState('')
     const [todoDeleteMsg,setTodoDeleteMsg] = useState({})
     const fetchData =async (url,setFunction) => {
@@ -28,6 +29,7 @@ const Todos = () => {
         .then(res=>res.json())
         .then(data=>{
             setTodoDeleteMsg(data)
+            setLoading(false)
             setTimeout(()=>setTodoDeleteMsg({}),5000)
         })
         .catch(err=>console.log(err));
@@ -43,7 +45,7 @@ const Todos = () => {
     }
     return (
         <>
-            {!user?.name ? <Loading/>:
+            {loading ? <Loading/>:
                 <div className='todos'>
                 {
                    todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 mx-4 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''

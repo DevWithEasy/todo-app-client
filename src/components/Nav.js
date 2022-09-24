@@ -28,7 +28,7 @@ const Nav = () => {
                 {!user.name && <button onClick={()=>url('/login')} className='link'>Login</button>}
                 {!user.name && <button onClick={()=>url('/registration')} className='link_registration'>Start for free
                 </button>}
-                {user.name && <button onClick={()=>url(`/profile/${user.id}`)} className='link'>Profile</button>}
+                {user.name && <button onClick={()=>url(`/profile`)} className='link'>Profile</button>}
                 {user.name && <button onClick={()=>url('/todo')} className='link'>Add Todo</button>}
                 {user.name &&  <button onClick={()=>url('/todos')} className='link'>All Todos</button>}
                 {user.name && <button onClick={()=>logOut()} className='link_registration'>Logout</button>}
