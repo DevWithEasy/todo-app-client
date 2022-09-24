@@ -16,7 +16,7 @@ const Router = () => {
             <Route path='/login' element={<Login/>}/>
             <Route path='/registration' element={<Registration/>}/>
             <Route path='/*' element={<ProtectedRoute/>}>
-                <Route path='profile/:id' element={<Profile/>}/>
+                <Route path='profile/' element={<Profile/>}/>
                 <Route path='todo' element={<Todo/>}/>
                 <Route path='todos' element={<Todos/>}/>
                 <Route path='todo/:id' element={<TodoUpdate/>}/>

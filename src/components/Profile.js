@@ -1,18 +1,18 @@
 import React, {useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { logoutAction } from '../redux/actions/authAction';
 import Loading from './Loading';
 
 const Profile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {id} = useParams()
+    const stateUser = useSelector(state=>state.auth.user)
     const [user,setUser] = useState({})
     const [errMsg,setErrMsg] = useState('')
     useEffect(()=>{
        const getUser =async()=>{
-         await fetch(`https://todo-bangla.herokuapp.com/user/profile/${id}`)
+         await fetch(`https://todo-bangla.herokuapp.com/user/profile/${stateUser.id}`)
             .then(res=>res.json())
             .then(data=>{
                 console.log(data)
@@ -26,9 +26,9 @@ const Profile = () => {
             .catch(err=>setErrMsg('Please ensure connection is established'))
         }
         getUser()
-    },[id])
+    },[stateUser.id])
     const deleteAccount =()=>{
-        fetch(`https://todo-bangla.herokuapp.com/user/profile/${id}`,{
+        fetch(`https://todo-bangla.herokuapp.com/user/profile/${stateUser.id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())

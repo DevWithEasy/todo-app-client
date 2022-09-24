@@ -1,15 +1,17 @@
 import React from 'react';
 import { Navigate, Outlet} from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../redux/actions/authAction';
 
 const ProtectedRoute = () => {
-    // const user = useSelector(state=>state.auth.user)
     const dispatch = useDispatch()
+    const stateUser = useSelector(state=>state.auth.user)
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user){
+
+    if(user && !stateUser) {
         dispatch(loginAction(user))
     }
+    
     return (
         <div>
             {
