@@ -41,7 +41,7 @@ const Todo = () => {
                 <textarea type="text" name="details" placeholder="Enter Details here" className="input" required onChange={handleInput}/>
                 <select name='status' className="input" required onChange={handleInput}>
                     <option value="">Select Status</option>
-                    <option value="Running">Running</option>
+                    <option value="Continue">Continue</option>
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
                 </select>

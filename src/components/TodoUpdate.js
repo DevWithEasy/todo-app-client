@@ -42,8 +42,9 @@ const TodoUpdate = () => {
                 <textarea type="text" name="details" value={data.details} className="input" required onChange={handleInput}/>
                 <select name='status' className="input" required onChange={handleInput}>
                     <option value={data.status}>{data.status}</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">In-Active</option>
+                    <option value="Continue">Continue</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
                 </select>
                 <input type="submit" value="Post"/>
             </form>

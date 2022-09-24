@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import NotTodoAvailable from './NotTodoAvailable';
+import {FaCheckCircle} from 'react-icons/fa';
+import {MdPendingActions} from 'react-icons/md';
+import {BiRun} from 'react-icons/bi';
+
 
 const Todos = () => {
     const user = useSelector(state=>state.auth.user)
@@ -46,18 +50,43 @@ const Todos = () => {
     return (
         <>
             {loading ? <Loading/>:
-                <div className='todos'>
+            <div>
                 {
                    todoDeleteMsg.status ? <div className={todoDeleteMsg.status === 'Success' ? 'border boder-green-500 p-2 mx-4 text-green-500' : 'border boder-red-500 p-2 text-red-500'}>{todoDeleteMsg.status} ! {todoDeleteMsg.msg}</div>:''
                }
+            
+                <div className='todos'>
                {
                 data.length === 0 && <NotTodoAvailable/>
                }
                {
                    data.map(d=><div key={d._id} className='todo'>
-                       <p className='title'>{d.title}</p>
+                       <p className='title'>
+                            <span>{d.title}</span>
+                            {d.status === 'Completed' ? <FaCheckCircle className='text-green-500'/>:''}
+                        </p>
+
                        <p className='details'>{d.details}</p>
-                       <p className='status'>{d.status}</p>
+
+                       <p className='status'>
+                            {
+                                d.status ==='Pending' ?
+                                <div className='flex items-center space-x-2'>
+                                    <MdPendingActions className='animate-pulse' size={20}/>
+                                    <span className='text-xs'>Your task is now {d.status}</span>
+                                </div> :
+                                d.status ==='Continue' ?
+                                <div className='flex items-center space-x-2 text-blue-500'>
+                                    <BiRun className='animate-ping'/>
+                                    <span className='text-xs'>Your task is now {d.status}</span>
+                                </div> :
+                                d.status ==='Completed'? <div className='flex items-center space-x-2 text-green-500'>
+                                <FaCheckCircle className='animate-pulse' size={15}/>
+                                <span className='text-xs'>Your task is successfully {d.status}</span>
+                            </div> : ''
+                            }
+                       </p>
+
                        <button onClick={()=>setDelete(d._id)} className='delete'>Delete</button>
                        <button onClick={()=>update(d._id)} className='update'>Update</button>
                    </div>)
@@ -78,6 +107,7 @@ const Todos = () => {
                    </div>
                </div>
                }
+           </div>
            </div>
             }
         </>
