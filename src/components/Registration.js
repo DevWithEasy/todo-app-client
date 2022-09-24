@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Registration = () => {
     const navigate = useNavigate()
@@ -10,6 +11,7 @@ const Registration = () => {
         password:"",
         avator:''
     })
+    const [msg,setMsg] = useState(false)
     const handleInput = (e) => {
         const input = { ...data };
         input[e.target.name] = e.target.value;
@@ -20,8 +22,15 @@ const Registration = () => {
             setData(input);
         }
       };
+      const notify=()=>{
+        toast.success('User registration successfull', {
+            position: toast.POSITION.TOP_CENTER
+          });
+    };
     const registration = async (e) => {
         e.preventDefault();
+        setMsg(true)
+
         const formData = new FormData()
         formData.append('name', data.name)
         formData.append('email', data.email)
@@ -29,14 +38,16 @@ const Registration = () => {
         formData.append('avator', data.avator)
         axios.post('https://todo-bangla.herokuapp.com/user/registration',formData)
         .then(res=>{
+            setMsg(false)
             if(res.status ==='success'){
+                notify()
                 navigate('/login')
             }
+
         })
         .catch(err=>console.log(err))
-        console.log(formData)
     };
-    console.log(data)
+    
     return (
         <div className="registration">
             <form onSubmit={registration}>
@@ -48,6 +59,12 @@ const Registration = () => {
                 <input type="file" name="avator" className="input" required onChange={handleInput}/>
                 <input type="submit" value="submit"/>
             </form>
+            {msg && <div className="flex justify-center items-center py-4">
+                <div className="">
+                    <p className='text-center animate-pulse font-bold font-mono'>Please wait...</p>
+                    <p className='text-center'>Trying to create user</p>
+                </div>
+            </div>}
         </div>
     );
 };

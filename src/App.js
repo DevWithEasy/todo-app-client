@@ -2,6 +2,8 @@ import Nav from "./components/Nav";
 import Router from "./components/Router";
 import { useDispatch,useSelector } from 'react-redux';
 import { loginAction } from "./redux/actions/authAction";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
     <div className="App">
       <Nav/>
       <Router/>
+      <ToastContainer />
     </div>
   );
 }
